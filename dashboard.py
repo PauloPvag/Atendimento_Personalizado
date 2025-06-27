@@ -5,6 +5,7 @@ import streamlit.components.v1 as components
 from datetime import datetime
 import time
 import numpy as np
+import pytz
 
 # Atualiza automaticamente os dados a cada 60 segundos sem recarregar a página do navegador
 if 'last_update' not in st.session_state:
@@ -14,7 +15,10 @@ if time.time() - st.session_state['last_update'] > 60:
     st.session_state['last_update'] = time.time()
     st.experimental_rerun()
 
-print(f"Dashboard atualizado em: {datetime.now().strftime('%d/%m/%Y, %H:%M:%S')}")
+fuso_brasil = pytz.timezone('America/Sao_Paulo')
+agora_brasil = datetime.now(fuso_brasil)
+
+print(f"Dashboard atualizado em: {agora_brasil.strftime('%d/%m/%Y, %H:%M:%S')}")
 
 # CSS para cards super compactos e sem margens extras
 st.markdown('''
@@ -93,7 +97,7 @@ st.markdown('''
 col_top1, col_top2 = st.columns([6,1])
 with col_top1:
     st.markdown("<h1 style='color:#4058BD;font-size:1.5rem;font-family:Segoe UI;margin-bottom:0.1em;'>Dashboard - Atendimento Personalizado</h1>", unsafe_allow_html=True)
-    st.markdown(f"<span style='color:#888;font-size:0.95rem;'>Última atualização: {datetime.now().strftime('%d/%m/%Y, %H:%M:%S')}</span>", unsafe_allow_html=True)
+    st.markdown(f"<span style='color:#888;font-size:0.95rem;'>Última atualização: {agora_brasil.strftime('%d/%m/%Y, %H:%M:%S')}</span>", unsafe_allow_html=True)
 with col_top2:
     # Carregar o CSV normalmente para definir df
     csv_url = "https://docs.google.com/spreadsheets/d/16wN44BGetQZYs2BxEJRq-BbdLtTPdYCzlMgoBQEHNbA/export?format=csv"
