@@ -23,8 +23,8 @@ print(f"Dashboard atualizado em: {agora_brasil.strftime('%d/%m/%Y, %H:%M:%S')}")
 # CSS para cards super compactos e sem margens extras
 st.markdown('''
     <style>
-    html, body, .main, .block-container, [class*="css"] {
-        background-color: #f7f9fa !important;
+    html, body, .main, .block-container, [class*="css"], .stApp {
+        background-color: #f7fafd !important;
         color: #222 !important;
     }
     .main, .block-container { padding-top: 0.1rem !important; padding-left: 0.5vw !important; padding-right: 0.5vw !important; }
@@ -125,7 +125,7 @@ with col_top2:
     # Botão de exportação Excel
     excel_url = "https://docs.google.com/spreadsheets/d/16wN44BGetQZYs2BxEJRq-BbdLtTPdYCzlMgoBQEHNbA/export?format=xlsx"
     st.markdown(f"""
-<div class='export-btn'>
+<div class='export-btn' style='margin-top:0.2em;margin-bottom:0.2em;'>
   <a href='{excel_url}' target='_blank'>
     <button>
       <svg viewBox='0 0 20 20'><path d='M13 10V3H7v7H4l6 7 6-7h-3zM4 18v-2h12v2H4z'></path></svg>
