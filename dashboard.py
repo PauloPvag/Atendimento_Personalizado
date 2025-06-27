@@ -295,4 +295,9 @@ if 'Data Primeiro Atendimento' in valid_df.columns and 'Data de Contração' in 
         else:
             st.markdown(
                 "<div style='color:#4058BD;font-size:1.1rem;font-weight:600;margin-top:0.5em;'>Média de dias/meses até contratação: <b>Não disponível</b></div>",
-                unsafe_allow_html=True) 
+                unsafe_allow_html=True)
+
+st.markdown(
+    "<div style='text-align:center; color:#888; font-size:0.85rem; margin-top:2em;'>Desenvolvido por Paulo Gramacho</div>",
+    unsafe_allow_html=True
+) 
