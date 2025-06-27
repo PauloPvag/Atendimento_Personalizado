@@ -90,6 +90,59 @@ st.markdown('''
         font-size: 2rem;
         margin-bottom: 0.3em;
     }
+    .footer-paulo {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        width: 100vw;
+        text-align: center;
+        color: #888;
+        font-size: 0.85rem;
+        background: transparent;
+        z-index: 9999;
+        padding-bottom: 0.5em;
+        margin: 0;
+    }
+    @media (max-width: 600px) {
+        .footer-paulo {
+            font-size: 1.1rem !important;
+            padding-bottom: 0.7em !important;
+        }
+    }
+    @media (max-width: 600px) {
+        .main, .block-container {
+            padding-left: 2vw !important;
+            padding-right: 2vw !important;
+            padding-top: 0.2rem !important;
+        }
+        h1 {
+            font-size: 1.1rem !important;
+        }
+        h2 {
+            font-size: 1rem !important;
+        }
+        .card-spaced, .export-btn button, .export-btn {
+            min-width: 90vw !important;
+            max-width: 98vw !important;
+            width: 100% !important;
+            margin-right: 0 !important;
+            margin-left: 0 !important;
+            margin-bottom: 1em !important;
+            padding: 1em 0.7em 1em 0.7em !important;
+        }
+        .stColumn {
+            flex: 1 1 100% !important;
+            max-width: 100% !important;
+        }
+        .stPlotlyChart {
+            min-width: 90vw !important;
+            max-width: 98vw !important;
+        }
+        .footer-paulo {
+            font-size: 1.1rem !important;
+            padding-bottom: 0.7em !important;
+        }
+    }
     </style>
 ''', unsafe_allow_html=True)
 
@@ -298,6 +351,8 @@ if 'Data Primeiro Atendimento' in valid_df.columns and 'Data de Contração' in 
                 unsafe_allow_html=True)
 
 st.markdown(
-    "<div style='text-align:center; color:#888; font-size:0.85rem; margin-top:2em;'>Desenvolvido por Paulo Gramacho</div>",
+    """
+    <div class='footer-paulo'>Desenvolvido por Paulo Gramacho</div>
+    """,
     unsafe_allow_html=True
 ) 
