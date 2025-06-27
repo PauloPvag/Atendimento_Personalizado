@@ -6,8 +6,14 @@ from datetime import datetime
 import time
 import numpy as np
 
-# Auto-refresh a cada 60 segundos
-components.html('<meta http-equiv="refresh" content="60">', height=0)
+# Atualiza automaticamente os dados a cada 60 segundos sem recarregar a página do navegador
+if 'last_update' not in st.session_state:
+    st.session_state['last_update'] = time.time()
+
+if time.time() - st.session_state['last_update'] > 60:
+    st.session_state['last_update'] = time.time()
+    st.experimental_rerun()
+
 print(f"Dashboard atualizado em: {datetime.now().strftime('%d/%m/%Y, %H:%M:%S')}")
 
 # CSS para cards super compactos e sem margens extras
@@ -269,4 +275,20 @@ if 'Data Primeiro Atendimento' in valid_df.columns and 'Data de Contração' in 
             margin=dict(l=10, r=10, t=40, b=10),
             height=350
         )
-        st.plotly_chart(fig_gantt, use_container_width=True) 
+        st.plotly_chart(fig_gantt, use_container_width=True)
+
+        # --- Média de dias e meses até contratação ---
+        gantt_df['Dias até Contratação'] = (gantt_df['Data de Contração'] - gantt_df['Data Primeiro Atendimento']).dt.days
+        media_dias_contratacao = gantt_df['Dias até Contratação'].mean()
+        media_meses_contratacao = media_dias_contratacao / 30.44 if media_dias_contratacao is not None and not np.isnan(media_dias_contratacao) else None
+
+        if media_dias_contratacao is not None and not np.isnan(media_dias_contratacao):
+            st.markdown(
+                f"""<div style='color:#4058BD;font-size:1.1rem;font-weight:600;margin-top:0.5em;'>
+                Média de dias até contratação: <b>{media_dias_contratacao:.1f} dias</b><br>
+                Média de meses até contratação: <b>{media_meses_contratacao:.2f} meses</b>
+                </div>""", unsafe_allow_html=True)
+        else:
+            st.markdown(
+                "<div style='color:#4058BD;font-size:1.1rem;font-weight:600;margin-top:0.5em;'>Média de dias/meses até contratação: <b>Não disponível</b></div>",
+                unsafe_allow_html=True) 
