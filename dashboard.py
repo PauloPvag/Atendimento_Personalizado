@@ -8,16 +8,8 @@ import numpy as np
 import pytz
 from streamlit_autorefresh import st_autorefresh
 
-# Atualiza a cada 60 segundos (60000 ms)
+# Atualiza automaticamente os dados a cada 60 segundos
 st_autorefresh(interval=60 * 1000, key="datarefresh")
-
-# Atualiza automaticamente os dados a cada 60 segundos sem recarregar a página do navegador
-if 'last_update' not in st.session_state:
-    st.session_state['last_update'] = time.time()
-
-if time.time() - st.session_state['last_update'] > 30:
-    st.session_state['last_update'] = time.time()
-    st.experimental_rerun()
 
 fuso_brasil = pytz.timezone('America/Sao_Paulo')
 agora_brasil = datetime.now(fuso_brasil)
