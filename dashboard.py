@@ -23,11 +23,14 @@ print(f"Dashboard atualizado em: {agora_brasil.strftime('%d/%m/%Y, %H:%M:%S')}")
 # CSS para cards super compactos e sem margens extras
 st.markdown('''
     <style>
+    html, body, .main, .block-container, [class*="css"] {
+        background-color: #f7f9fa !important;
+        color: #222 !important;
+    }
     .main, .block-container { padding-top: 0.1rem !important; padding-left: 0.5vw !important; padding-right: 0.5vw !important; }
     h1 { margin-top: 0.05em !important; margin-bottom: 0.05em !important; }
     html, body, [class*="css"]  {
         font-family: 'Segoe UI', Arial, sans-serif !important;
-        background-color: #f7f9fa !important;
     }
     .stMetric { text-align: center !important; }
     .export-btn { display: flex; align-items: center; height: 100px; }
@@ -96,6 +99,7 @@ st.markdown('''
         font-size: 0.85rem;
         margin-bottom: 0.5em;
         margin-top: 2em;
+        background: #f7f9fa !important;
     }
     @media (max-width: 600px) {
         .footer-paulo {
